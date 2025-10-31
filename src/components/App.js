@@ -1,13 +1,42 @@
+import React, { useState } from "react";
+import "./../styles/App.css";
 
-import React from "react";
-import './../styles/App.css';
+const fruits = [
+  "apple",
+  "banana",
+  "mango",
+  "kiwi",
+  "oranges",
+  "avocado",
+  "berries",
+  "strawberry"
+];
 
 const App = () => {
-  return (
-    <div>
-        {/* Do not remove the main div */}
-    </div>
-  )
-}
+  const [query, setQuery] = useState("");
 
-export default App
+  const filteredFruits = fruits.filter((fruit) =>
+    fruit.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div id="main">
+      <h1>Search item</h1>
+
+      <input
+        type="text"
+        placeholder="Search fruit..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <ul>
+        {filteredFruits.map((fruit, index) => (
+          <li key={index}>{fruit}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
