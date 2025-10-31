@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./../styles/App.css";
 
 const fruits = [
@@ -14,23 +14,11 @@ const fruits = [
 
 const App = () => {
   const [query, setQuery] = useState("");
-  const [filteredFruits, setFilteredFruits] = useState([]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (query.trim() === "") {
-        setFilteredFruits([]);
-      } else {
-        const results = fruits.filter((fruit) =>
-          fruit.toLowerCase().includes(query.toLowerCase())
-        );
-        setFilteredFruits(results);
-      }
-    }, 300); 
-
-    return () => clearTimeout(timer);
-  }, [query]);
-
+  const filteredFruits = fruits.filter((fruit) =>
+    fruit.toLowerCase().includes(query.toLowerCase())
+  );
+  
   return (
     <div id="main">
       <h1>Search item</h1>
